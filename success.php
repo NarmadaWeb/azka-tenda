@@ -14,13 +14,6 @@ $stmt->bind_param("s", $order_id);
 $stmt->execute();
 $order = $stmt->get_result()->fetch_assoc();
 
-if ($order && $order['status'] == 'Pending') {
-    // Manually mark success for testing / flow simulation
-    $stmt_update = $conn->prepare("UPDATE orders SET status = 'Success' WHERE order_id = ?");
-    $stmt_update->bind_param("s", $order_id);
-    $stmt_update->execute();
-}
-
 unset($_SESSION['order_id']);
 ?>
 

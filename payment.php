@@ -2,12 +2,12 @@
 session_start();
 include 'includes/config.php';
 
-if (!isset($_SESSION['order_id'])) {
+$order_id = $_GET['order_id'] ?? ($_SESSION['order_id'] ?? null);
+
+if (!$order_id) {
     header('Location: catalog.php');
     exit;
 }
-
-$order_id = $_SESSION['order_id'];
 
 // Fetch order details
 $stmt = $conn->prepare("SELECT * FROM orders WHERE order_id = ?");

@@ -16,8 +16,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $_POST['category_id'];
         $price = $_POST['price'];
         $unit = $_POST['unit'];
-        $image = $_POST['image'];
         $description = $_POST['description'];
+
+        $image = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            $file_info = finfo_open(FILEINFO_MIME_TYPE);
+            $mime_type = finfo_file($file_info, $_FILES['image']['tmp_name']);
+            finfo_close($file_info);
+
+            $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+            $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+            if (in_array($mime_type, $allowed_types) && in_array($file_extension, $allowed_extensions)) {
+                $target_dir = "../assets/images/";
+                // ensure safe filename to prevent double extensions like shell.php.jpg
+                $file_name = time() . '_' . preg_replace("/[^a-zA-Z0-9_-]/", "", pathinfo($_FILES["image"]["name"], PATHINFO_FILENAME)) . '.' . $file_extension;
+                $target_file = $target_dir . $file_name;
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $image = "assets/images/" . $file_name;
+                }
+            } else {
+                header("Location: products.php?msg=invalid_image");
+                exit;
+            }
+        }
 
         $stmt = $conn->prepare("INSERT INTO products (name, category_id, price, unit, image, description) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sissss", $name, $category_id, $price, $unit, $image, $description);
@@ -30,11 +53,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $_POST['category_id'];
         $price = $_POST['price'];
         $unit = $_POST['unit'];
-        $image = $_POST['image'];
         $description = $_POST['description'];
 
-        $stmt = $conn->prepare("UPDATE products SET name=?, category_id=?, price=?, unit=?, image=?, description=? WHERE id=?");
-        $stmt->bind_param("sissssi", $name, $category_id, $price, $unit, $image, $description, $id);
+        $image_query = "";
+        $params = [$name, $category_id, $price, $unit, $description];
+        $types = "sisss";
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            $file_info = finfo_open(FILEINFO_MIME_TYPE);
+            $mime_type = finfo_file($file_info, $_FILES['image']['tmp_name']);
+            finfo_close($file_info);
+
+            $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+            $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+            if (in_array($mime_type, $allowed_types) && in_array($file_extension, $allowed_extensions)) {
+                $target_dir = "../assets/images/";
+                // ensure safe filename to prevent double extensions like shell.php.jpg
+                $file_name = time() . '_' . preg_replace("/[^a-zA-Z0-9_-]/", "", pathinfo($_FILES["image"]["name"], PATHINFO_FILENAME)) . '.' . $file_extension;
+                $target_file = $target_dir . $file_name;
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $image_query = ", image=?";
+                    $params[] = "assets/images/" . $file_name;
+                    $types .= "s";
+                }
+            } else {
+                header("Location: products.php?msg=invalid_image");
+                exit;
+            }
+        }
+
+        $params[] = $id;
+        $types .= "i";
+
+        $stmt = $conn->prepare("UPDATE products SET name=?, category_id=?, price=?, unit=?, description=? {$image_query} WHERE id=?");
+        $stmt->bind_param($types, ...$params);
         $stmt->execute();
         header("Location: products.php?msg=updated");
         exit;
@@ -90,9 +144,15 @@ $categories = $conn->query("SELECT * FROM categories");
         </div>
 
         <?php if (isset($_GET['msg'])): ?>
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6">
-                <?= htmlspecialchars($_GET['msg']) ?> successfully.
-            </div>
+            <?php if ($_GET['msg'] === 'invalid_image'): ?>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+                    Invalid image format. Only JPG, PNG, GIF, and WEBP are allowed.
+                </div>
+            <?php else: ?>
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6">
+                    <?= htmlspecialchars($_GET['msg']) ?> successfully.
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
 
         <?php if ($action === 'add' || $action === 'edit'): ?>
@@ -106,7 +166,7 @@ $categories = $conn->query("SELECT * FROM categories");
                 }
             ?>
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 max-w-2xl">
-                <form method="POST" action="products.php" class="space-y-4">
+                <form method="POST" action="products.php" enctype="multipart/form-data" class="space-y-4">
                     <?php if($product): ?>
                         <input type="hidden" name="id" value="<?= $product['id'] ?>">
                     <?php endif; ?>
@@ -133,8 +193,11 @@ $categories = $conn->query("SELECT * FROM categories");
                             <input type="text" name="unit" required class="w-full border border-slate-300 rounded-lg px-4 py-2" value="<?= htmlspecialchars($product['unit'] ?? '') ?>">
                         </div>
                         <div class="col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">Image URL</label>
-                            <input type="text" name="image" required class="w-full border border-slate-300 rounded-lg px-4 py-2" value="<?= htmlspecialchars($product['image'] ?? '') ?>">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Image Upload</label>
+                            <?php if($product && $product['image']): ?>
+                                <img src="../<?= htmlspecialchars($product['image']) ?>" alt="Current Image" class="h-20 w-20 object-cover rounded mb-2">
+                            <?php endif; ?>
+                            <input type="file" name="image" accept="image/*" <?= !$product ? 'required' : '' ?> class="w-full border border-slate-300 rounded-lg px-4 py-2 bg-white">
                         </div>
                         <div class="col-span-2">
                             <label class="block text-sm font-semibold text-slate-700 mb-1">Description</label>
@@ -166,7 +229,7 @@ $categories = $conn->query("SELECT * FROM categories");
                             <td class="p-4 text-slate-500 text-sm"><?= $row['id'] ?></td>
                             <td class="p-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="<?= htmlspecialchars($row['image']) ?>" alt="" class="w-10 h-10 rounded object-cover">
+                                    <img src="../<?= htmlspecialchars($row['image']) ?>" alt="" class="w-10 h-10 rounded object-cover">
                                     <span class="font-medium text-slate-800"><?= htmlspecialchars($row['name']) ?></span>
                                 </div>
                             </td>

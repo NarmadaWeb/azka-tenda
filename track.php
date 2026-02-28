@@ -62,7 +62,7 @@ if ($order_id) {
                         <div class="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-xl border border-yellow-200 dark:border-yellow-800 mt-8 text-center">
                             <h3 class="font-bold text-yellow-800 dark:text-yellow-200 mb-2">Menunggu Pembayaran</h3>
                             <p class="text-sm text-yellow-700 dark:text-yellow-300 mb-4">Silakan selesaikan pembayaran untuk memproses pesanan Anda.</p>
-                            <a href="payment.php" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2 max-w-xs mx-auto">
+                            <a href="payment.php?order_id=<?= urlencode($order['order_id']) ?>" class="inline-block bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2 max-w-xs mx-auto">
                                 <span class="material-symbols-outlined">payment</span>
                                 Bayar Sekarang
                             </a>

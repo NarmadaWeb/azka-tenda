@@ -1,0 +1,37 @@
+[Mon Mar  2 07:41:52 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
+[Mon Mar  2 07:41:54 2026] [::1]:56122 Accepted
+[Mon Mar  2 07:41:54 2026] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /app/includes/config.php:9
+Stack trace:
+#0 /app/includes/config.php(9): mysqli->__construct()
+#1 /app/index.php(1): include('...')
+#2 /app/router.php(7): require('...')
+#3 {main}
+  thrown in /app/includes/config.php on line 9
+[Mon Mar  2 07:41:54 2026] [::1]:56122 Closing
+[Mon Mar  2 07:41:54 2026] [::1]:56138 Accepted
+[Mon Mar  2 07:41:54 2026] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /app/includes/config.php:9
+Stack trace:
+#0 /app/includes/config.php(9): mysqli->__construct()
+#1 /app/catalog.php(2): include('...')
+#2 /app/router.php(14): require('...')
+#3 {main}
+  thrown in /app/includes/config.php on line 9
+[Mon Mar  2 07:41:54 2026] [::1]:56138 Closing
+[Mon Mar  2 07:41:54 2026] [::1]:56140 Accepted
+[Mon Mar  2 07:41:54 2026] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /app/includes/config.php:9
+Stack trace:
+#0 /app/includes/config.php(9): mysqli->__construct()
+#1 /app/about.php(1): include('...')
+#2 /app/router.php(14): require('...')
+#3 {main}
+  thrown in /app/includes/config.php on line 9
+[Mon Mar  2 07:41:54 2026] [::1]:56140 Closing
+[Mon Mar  2 07:43:56 2026] [::1]:48036 Accepted
+[Mon Mar  2 07:43:56 2026] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /app/includes/config.php:9
+Stack trace:
+#0 /app/includes/config.php(9): mysqli->__construct()
+#1 /app/contact.php(1): include('...')
+#2 /app/router.php(14): require('...')
+#3 {main}
+  thrown in /app/includes/config.php on line 9
+[Mon Mar  2 07:43:56 2026] [::1]:48036 Closing

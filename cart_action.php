@@ -30,21 +30,21 @@ if ($action === 'add' && $product_id > 0) {
             ];
         }
     }
-    header('Location: order.php');
+    header('Location: /order');
     exit;
 } elseif ($action === 'remove' && $product_id > 0) {
     if (isset($_SESSION['cart'][$product_id])) {
         unset($_SESSION['cart'][$product_id]);
     }
-    header('Location: order.php');
+    header('Location: /order');
     exit;
 } elseif ($action === 'update' && $product_id > 0) {
     if (isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id]['quantity'] = $quantity;
     }
-    header('Location: order.php');
+    header('Location: /order');
     exit;
 }
 
-header('Location: catalog.php');
+header('Location: /catalog');
 exit;

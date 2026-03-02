@@ -5,7 +5,7 @@ include 'includes/config.php';
 $order_id = $_GET['order_id'] ?? ($_SESSION['order_id'] ?? null);
 
 if (!$order_id) {
-    header('Location: index.php');
+    header('Location: /');
     exit;
 }
 
@@ -24,7 +24,7 @@ unset($_SESSION['order_id']);
         <span class="material-symbols-outlined text-green-500 text-6xl mb-4">check_circle</span>
         <h1 class="text-3xl font-bold mb-2 text-slate-900 dark:text-white">Pembayaran Berhasil</h1>
         <p class="text-slate-500 mb-8">Transaksi Anda telah berhasil diproses. Detail telah dikirim ke email Anda.</p>
-        <a href="track.php?order_id=<?= urlencode($order_id) ?>" class="w-full bg-primary text-white font-bold h-12 rounded-lg flex items-center justify-center hover:bg-primary/90 transition-all">Lacak Pesanan</a>
+        <a href="/track?order_id=<?= urlencode($order_id) ?>" class="w-full bg-primary text-white font-bold h-12 rounded-lg flex items-center justify-center hover:bg-primary/90 transition-all">Lacak Pesanan</a>
     </div>
 </main>
 

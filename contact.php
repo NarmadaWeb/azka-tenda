@@ -23,6 +23,35 @@
             </div>
         </div>
     </div>
+
+    <div class="mt-20">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="max-w-3xl mx-auto space-y-4">
+            <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 text-slate-900 dark:text-white">
+                    <h3 class="font-bold">Berapa lama waktu minimal untuk pemesanan sebelum hari H?</h3>
+                    <span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 dark:text-slate-400">Kami menyarankan Anda untuk melakukan pemesanan setidaknya 1 bulan sebelum acara untuk memastikan ketersediaan perlengkapan yang Anda butuhkan.</p>
+            </details>
+
+            <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 text-slate-900 dark:text-white">
+                    <h3 class="font-bold">Apakah harga sewa sudah termasuk biaya bongkar pasang?</h3>
+                    <span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 dark:text-slate-400">Ya, semua harga yang tertera di website kami sudah termasuk biaya bongkar pasang oleh tim profesional kami.</p>
+            </details>
+
+            <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 text-slate-900 dark:text-white">
+                    <h3 class="font-bold">Apakah melayani pengiriman ke luar kota?</h3>
+                    <span class="material-symbols-outlined transition duration-300 group-open:-rotate-180">expand_more</span>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 dark:text-slate-400">Saat ini kami fokus melayani area Jabodetabek. Untuk pengiriman ke luar kota, dapat didiskusikan lebih lanjut dengan tim customer service kami mengenai biaya transportasi tambahan.</p>
+            </details>
+        </div>
+    </div>
 </main>
 
 <?php include 'includes/footer.php'; ?>

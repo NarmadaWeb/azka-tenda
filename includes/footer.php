@@ -14,18 +14,18 @@
             <div class="space-y-4">
                 <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Quick Links</h4>
                 <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                    <li><a href="index.php" class="hover:text-primary">Home</a></li>
-                    <li><a href="catalog.php" class="hover:text-primary">Katalog</a></li>
-                    <li><a href="gallery.php" class="hover:text-primary">Gallery</a></li>
-                    <li><a href="about.php" class="hover:text-primary">About Us</a></li>
+                    <li><a href="/" class="hover:text-primary">Beranda</a></li>
+                    <li><a href="/catalog" class="hover:text-primary">Katalog</a></li>
+                    <li><a href="/gallery" class="hover:text-primary">Galeri</a></li>
+                    <li><a href="/about" class="hover:text-primary">Tentang Kami</a></li>
                 </ul>
             </div>
             <div class="space-y-4">
                 <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Policies</h4>
                 <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                    <li><a href="terms.php" class="hover:text-primary">Syarat & Ketentuan</a></li>
-                    <li><a href="help.php" class="hover:text-primary">Pusat Bantuan</a></li>
-                    <li><a href="testimonials.php" class="hover:text-primary">Testimoni</a></li>
+                    <li><a href="/terms" class="hover:text-primary">Syarat & Ketentuan</a></li>
+                    <li><a href="/help" class="hover:text-primary">Pusat Bantuan</a></li>
+                    <li><a href="/testimonials" class="hover:text-primary">Testimoni</a></li>
                 </ul>
             </div>
             <div class="space-y-4">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 text-center text-xs text-slate-500">
-            <p>© 2024 Azka Tenda. All rights reserved.</p>
+            <p>© <?= date('Y') ?> Azka Tenda. All rights reserved.</p>
         </div>
     </footer>
 </body>

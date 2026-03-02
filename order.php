@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $_SESSION['order_id'] = $order_id;
-            header('Location: payment.php');
+            header('Location: /payment');
             exit;
         } else {
             $error = "Terjadi kesalahan saat memproses pesanan Anda.";
@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="material-symbols-outlined text-4xl text-slate-400 mb-4 block">shopping_cart</span>
                     <h2 class="text-xl font-bold text-slate-700 dark:text-slate-300">Keranjang Masih Kosong</h2>
                     <p class="text-slate-500 mb-4">Silakan pilih produk yang ingin disewa melalui katalog kami.</p>
-                    <a href="catalog.php" class="inline-block bg-primary text-white font-bold px-6 py-2 rounded-lg">Ke Katalog</a>
+                    <a href="/catalog" class="inline-block bg-primary text-white font-bold px-6 py-2 rounded-lg">Ke Katalog</a>
                 </div>
             <?php else: ?>
-                <form id="orderForm" method="POST" action="order.php">
+                <form id="orderForm" method="POST" action="/order">
                     <section class="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm mb-6">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="material-symbols-outlined text-primary">person</span>
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="text-right shrink-0">
                             <span class="font-bold text-sm block">Rp <?= number_format($item_total, 0, ',', '.') ?></span>
-                            <a href="cart_action.php?action=remove&product_id=<?= $item['id'] ?>" class="text-xs text-red-500 hover:underline">Hapus</a>
+                            <a href="/cart_action?action=remove&product_id=<?= $item['id'] ?>" class="text-xs text-red-500 hover:underline">Hapus</a>
                         </div>
                     </div>
                     <?php endforeach; ?>

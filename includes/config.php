@@ -2,8 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 $db_host = 'localhost';
-$db_user = 'jules';
-$db_pass = 'password';
+$db_user = 'root';
+$db_pass = '';
 $db_name = 'azka_tenda';
 
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);

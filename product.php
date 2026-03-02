@@ -2,7 +2,7 @@
 include 'includes/config.php';
 
 if (!isset($_GET['id'])) {
-    header('Location: catalog.php');
+    header('Location: /catalog');
     exit;
 }
 
@@ -11,7 +11,7 @@ $query = "SELECT p.*, c.name as category_name FROM products p LEFT JOIN categori
 $result = $conn->query($query);
 
 if ($result->num_rows == 0) {
-    header('Location: catalog.php');
+    header('Location: /catalog');
     exit;
 }
 
@@ -22,7 +22,7 @@ $product = $result->fetch_assoc();
 
 <main class="max-w-[1200px] mx-auto w-full px-6 py-8 flex-1">
     <div class="mb-4">
-        <a href="catalog.php" class="text-sm text-primary hover:underline">&larr; Kembali ke Katalog</a>
+        <a href="/catalog" class="text-sm text-primary hover:underline">&larr; Kembali ke Katalog</a>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div class="lg:col-span-7 flex flex-col gap-4">
@@ -43,7 +43,7 @@ $product = $result->fetch_assoc();
                 </div>
             </div>
 
-            <form action="cart_action.php" method="POST" class="flex flex-col gap-4">
+            <form action="/cart_action" method="POST" class="flex flex-col gap-4">
                 <input type="hidden" name="action" value="add">
                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
 

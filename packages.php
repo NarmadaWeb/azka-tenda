@@ -16,7 +16,7 @@
             <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full">Hemat <?= $pkg['discount'] ?></span>
             <h3 class="text-2xl font-bold mt-4 mb-2 text-slate-900 dark:text-white"><?= $pkg['name'] ?></h3>
             <p class="text-primary font-bold text-xl mb-6">Rp <?= number_format($pkg['price'], 0, ',', '.') ?></p>
-            <a href="catalog.php" class="block w-full text-center bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all">Lihat Katalog</a>
+            <a href="/catalog" class="block w-full text-center bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-all">Lihat Katalog</a>
         </div>
         <?php endforeach; ?>
     </div>

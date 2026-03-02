@@ -38,26 +38,26 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300 flex flex-col min-h-screen">
     <header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4">
-        <a href="index.php" class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white">
                 <span class="material-symbols-outlined">farsight_digital</span>
             </div>
             <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Azka Tenda</h2>
         </a>
         <nav class="hidden md:flex items-center gap-8">
-            <a href="index.php" class="text-sm font-semibold hover:text-primary transition-colors">Home</a>
-            <a href="catalog.php" class="text-sm font-semibold hover:text-primary transition-colors">Catalog</a>
-            <a href="packages.php" class="text-sm font-semibold hover:text-primary transition-colors">Packages</a>
-            <a href="gallery.php" class="text-sm font-semibold hover:text-primary transition-colors">Gallery</a>
-            <a href="blog.php" class="text-sm font-semibold hover:text-primary transition-colors">Blog</a>
-            <a href="about.php" class="text-sm font-semibold hover:text-primary transition-colors">About Us</a>
-            <a href="contact.php" class="text-sm font-semibold hover:text-primary transition-colors">Contact</a>
+            <a href="/" class="text-sm font-semibold hover:text-primary transition-colors">Beranda</a>
+            <a href="/catalog" class="text-sm font-semibold hover:text-primary transition-colors">Katalog</a>
+            <a href="/packages" class="text-sm font-semibold hover:text-primary transition-colors">Paket</a>
+            <a href="/gallery" class="text-sm font-semibold hover:text-primary transition-colors">Galeri</a>
+            <a href="/blog" class="text-sm font-semibold hover:text-primary transition-colors">Blog</a>
+            <a href="/about" class="text-sm font-semibold hover:text-primary transition-colors">Tentang Kami</a>
+            <a href="/contact" class="text-sm font-semibold hover:text-primary transition-colors">Kontak</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="track.php" class="hidden md:flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary font-semibold text-sm">
+            <a href="/track" class="hidden md:flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary font-semibold text-sm">
                 Lacak Pesanan
             </a>
-            <a href="catalog.php" class="flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all active:scale-95">
+            <a href="/catalog" class="flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all active:scale-95">
                 Pesan
             </a>
             <?php
@@ -69,7 +69,7 @@
                 }
             }
             ?>
-            <a href="order.php" class="flex items-center justify-center gap-2 rounded-lg bg-slate-200 dark:bg-slate-800 px-4 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">
+            <a href="/order" class="flex items-center justify-center gap-2 rounded-lg bg-slate-200 dark:bg-slate-800 px-4 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">
                 <span class="material-symbols-outlined text-lg">shopping_cart</span>
                 <span><?= $cart_count ?></span>
             </a>

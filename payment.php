@@ -5,7 +5,7 @@ include 'includes/config.php';
 $order_id = $_GET['order_id'] ?? ($_SESSION['order_id'] ?? null);
 
 if (!$order_id) {
-    header('Location: catalog.php');
+    header('Location: /catalog');
     exit;
 }
 
@@ -125,7 +125,7 @@ unset($_SESSION['cart']);
             </button>
         </div>
         <div class="text-center">
-            <a href="track.php?order_id=<?= urlencode($order_id) ?>" class="text-sm text-slate-500 hover:text-primary transition-colors underline">Bayar Nanti / Lacak Pesanan</a>
+            <a href="/track?order_id=<?= urlencode($order_id) ?>" class="text-sm text-slate-500 hover:text-primary transition-colors underline">Bayar Nanti / Lacak Pesanan</a>
         </div>
     </div>
 </main>
